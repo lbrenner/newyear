@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Days Until New Year</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #282c34;
+      color: white;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .countdown {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .number {
+      font-size: 5em;
+      margin: 10px 0;
+      animation: pop 1s infinite;
+    }
+
+    .label {
+      font-size: 1.5em;
+    }
+
+    @keyframes pop {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Days Until New Year</h1>
+    <div class="countdown">
+      <div id="days" class="number"></div>
+      <div class="label">Days</div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const daysElement = document.getElementById('days');
+
+      function updateDaysUntilNewYear() {
+        const now = new Date();
+        const nextYear = now.getFullYear() + 1;
+        const newYearDate = new Date(nextYear, 0, 1);
+        const timeDifference = newYearDate - now;
+        const daysLeft = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        daysElement.textContent = daysLeft;
+      }
+
+      updateDaysUntilNewYear();
+      setInterval(updateDaysUntilNewYear, 86400000); // Update every day
+    });
+  </script>
+</body>
+</html>
